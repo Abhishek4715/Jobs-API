@@ -9,11 +9,14 @@ app.use(express.json());
 
 // Route
 const jobs = require("./routes/jobsRoutes.js");
+const user = require("./routes/authsRoutes.js");
+
 app.use("/api/v1/jobs", jobs);
+app.use("/api/v1/auths", user);
 
 // Home
 app.get('/', (req, res) => {
-    res.send("<h1>This is home page</h1>")
+    res.send("<h1>This is home page</h1>");
 })
 
 // Port

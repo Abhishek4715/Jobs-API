@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 
+// Authentication
+const AuthenticateUser = require("./middlewares/authentication.js");
+
 // MongoDB
 const connectDb = require("./db/connect.js");
 
@@ -11,7 +14,7 @@ app.use(express.json());
 const jobs = require("./routes/jobsRoutes.js");
 const user = require("./routes/authsRoutes.js");
 
-app.use("/api/v1/jobs", jobs);
+app.use("/api/v1/jobs", AuthenticateUser, jobs);
 app.use("/api/v1/auths", user);
 
 // Home

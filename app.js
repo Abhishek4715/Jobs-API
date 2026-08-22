@@ -17,7 +17,14 @@ const user = require("./routes/authsRoutes.js");
 app.use("/api/v1/jobs", AuthenticateUser, jobs);
 app.use("/api/v1/auths", user);
 
+// Error 
+const errorHandlerMiddleware = require("./middlewares/errorHandler.js");
+const notfound = require("./middlewares/notfound.js");
+
+app.use(notfound);
+app.use(errorHandlerMiddleware);
 // Home
+
 app.get('/', (req, res) => {
     res.send("<h1>This is home page</h1>");
 })

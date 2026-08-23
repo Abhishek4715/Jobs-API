@@ -10,11 +10,11 @@ const getJob = async (req, res) => {
         user: userId,
         params: { id: jobId }
     } = req;
-    const job = await Job.findById({
+    const job = await Job.findOne({
         _id: jobId,
         createdBy: userId
     });
-    if (!job) return res.status(404).json({ msg: "No job found" })
+    if (!job) throw new NotFoundError(`No job found with id: ${jobId}`);
     res.status(200).json({ job });
 }
 
@@ -22,7 +22,6 @@ const createJob = async (req, res) => {
     const job = await Job.create({ ...req.body, createdBy: req.user.userId });
     res.status(201).json({ job });
 }
-
 
 
 const updateJob = async (req, res) => {
@@ -33,7 +32,7 @@ const updateJob = async (req, res) => {
     } = req;
 
     if (company === '' || position === '') {
-        return res.status(404).json({ msg: "Company and Position are required" });
+        throw new BadRequestError("Company and Position are required");
     }
 
     const job = await Job.findOneAndUpdate({ _id: jobId, createdBy: userId }, req.body, {
@@ -42,7 +41,7 @@ const updateJob = async (req, res) => {
     });
 
     if (!job) {
-        return res.status(404).json({ msg: "Job Not Found" });
+        throw new NotFoundError(`No job found with id: ${jobId}`);
     }
     res.status(200).json({ job });
 }
@@ -58,7 +57,7 @@ const deleteJob = async (req, res) => {
         createdBy: userId
     });
 
-    if (!job) return res.status(404).json({ msg: "No job found" })
+    if (!job)   throw new NotFoundError(`No job found with id: ${jobId}`);
     res.status(200).json({msg: "Job Deleted"});
 }
 

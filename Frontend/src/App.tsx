@@ -1,12 +1,11 @@
-import './App.css'
+import './App.css';
+import { Login } from "./pages/Login.tsx";
 
 function App() {
 
   return (
     <div className='flex justify-center'>
-      <h1 className='text-6xl m-4'>
-        API Home Page
-      </h1>
+      <h1>Jobs API Home</h1>
     </div>
   )
 }

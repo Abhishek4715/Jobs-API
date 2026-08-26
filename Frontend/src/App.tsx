@@ -1,13 +1,17 @@
+import { Routes, Route} from "react-router-dom";;
+import { Login } from './pages/Login';
+import { Home } from './pages/Home.tsx';
 import './App.css';
-import { Login } from "./pages/Login.tsx";
 
 function App() {
-
   return (
-    <div className='flex justify-center'>
-      <h1>Jobs API Home</h1>
-    </div>
+    <>
+      <Routes>
+        <Route index path="/" element={<Home />} />
+        <Route path='/login' element={<Login />} />
+      </Routes>
+    </>
   )
 }
 
-export default App
+export default App 

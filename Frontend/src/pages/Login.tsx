@@ -71,7 +71,7 @@ export function Login() {
                 </form>
                 <div className="flex flex-row gap-4 items-center justify-center w-full">
                     <p>Don't have an account</p>
-                    <a href="#" className="text-purple-900">Register </a>
+                    <a href="/register" className="text-purple-900">Register </a>
                 </div>
 
             </div>

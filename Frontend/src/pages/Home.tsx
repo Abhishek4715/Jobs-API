@@ -4,8 +4,15 @@ export function Home() {
     return (
         <>
             <Link to='/login'>
-                <button>Login
+                <button>
+                    Login
                 </button>
-            </Link></>
+            </Link>
+            <Link to='/register'>
+                <button>
+                    Register
+                </button>
+            </Link>
+        </>
     )
 }

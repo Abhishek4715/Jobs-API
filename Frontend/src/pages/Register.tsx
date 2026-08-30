@@ -91,13 +91,13 @@ export function Register() {
                         <input value={phone} id="phone no" type="tel" inputMode="numeric" className='focus:outline-none focus:ring-0 border-2 border-gray-500/50 rounded-md pl-8 pr-2 py-2 mb-6 w-full' onChange={(e) => setPhone(e.target.value)} />
                     </div>
                     <div className='flex flex-row mb-10 items-center'>
-                        <input checked={checkbox} type="checkbox" className='rounded-2xl mr-2' onClick={() => setCheckbox(!checkbox)} />
+                        <input checked={checkbox} type="checkbox" className='rounded-2xl mr-2' onChange={() => setCheckbox(!checkbox)} />
                         <p>I agree to the Terms of Service and Privacy Policy</p>
                     </div>
                     <button type="submit" className='bg-purple-600 hover:bg-purple-700 text-white rounded-md px-2 py-2 mb-6' disabled={submitting} >Register</button>
                     <div className='flex flex-row justify-center gap-2'>
                         <p>Already have an account?</p>
-                        <Link to='/login' className='text-purple-900'>Login</Link>
+                        <Link to='/api/v1/auths/login' className='text-purple-900'>Login</Link>
                     </div>
                 </form>
             </div>

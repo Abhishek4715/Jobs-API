@@ -13,9 +13,14 @@ export function Home() {
                     Register
                 </button>
             </Link>
-            <Link to='/api/v1/jobs'>
+            <Link to='/api/v1/jobs/all'>
                 <button>
                     Get Job
+                </button>
+            </Link>
+            <Link to='/api/v1/jobs/create'>
+                <button>
+                    Create Job
                 </button>
             </Link>
         </>

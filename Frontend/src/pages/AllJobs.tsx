@@ -33,10 +33,18 @@ export function AllJobs() {
                 <p className="text-2xl font-bold m-auto mt-4 w-fit text-purple-700">All Jobs List</p>
                 {data.map((job) => (
                     <div key={job._id} className="flex flex-col w-xl m-auto rounded-md bg-purple-200 gap-2 my-10 py-3" >
-                        <p className="ml-[33%]">{job.company}</p>
-                        <p className="ml-[33%]">{job.position}</p>
-                        <p className="ml-[33%]">{job.position}</p>
-                        <p className="ml-[33%]">{job.status}</p>
+                        <div className="flex flex-row gap-2 justify-between mx-10">
+                            <p>Company: </p>
+                            <p className="ml-[33%]">{job.company}</p>
+                        </div>
+                        <div className="flex flex-row gap-2 justify-between mx-10">
+                            <p>Position: </p>
+                            <p className="ml-[33%]">{job.position}</p>
+                        </div>
+                        <div className="flex flex-row gap-2 justify-between mx-10">
+                            <p>Status: </p>
+                            <p className="ml-[33%]">{job.status}</p>
+                        </div>
                     </div>
                 ))}
             </div>

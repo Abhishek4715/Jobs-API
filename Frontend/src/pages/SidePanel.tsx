@@ -6,7 +6,7 @@ export function SidePanel() {
     const panelItem: string[] = ["All Jobs", "Create Job", "Delete Job", "Update Job"];
     const panelIcon = [BriefcaseBusiness, PlusCircle, Trash, Pen];
     return (
-        <div className="w-1/5 outline-2 bg-gray-800 flex flex-col h-screen items-center">
+        <div className="w-1/5 outline-2 bg-gray-800 flex flex-col h-screen items-center sticky top-0">
             <p className="text-2xl w-fit mb-4 mt-4 text-purple-800 font-bold">Jobs Track</p>
 
             {panelItem.map((item, index) => {

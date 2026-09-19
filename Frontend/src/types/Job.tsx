@@ -3,6 +3,7 @@ export interface jobType  {
     company: string;
     position: string;
     status: string;
+    isDeleted: boolean;
 }
 
 

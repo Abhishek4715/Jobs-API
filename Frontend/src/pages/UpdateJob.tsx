@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom"
 import { Building2, BriefcaseBusiness, ThumbsUp } from "lucide-react";
 import { SidePanel } from "./SidePanel";
 
-export function CreateJob() {
-    type Status = "interview" | "declined" | "pending";
 
+export function UpdateJob() {
+    type Status = "interview" | "declined" | "pending";
     const [company, setCompany] = useState<string>("");
     const [position, setPosition] = useState<string>("");
     const [status, setStatus] = useState<Status>("interview");
     const [done, setDone] = useState<boolean>(false);
+    const { id } = useParams();
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -16,8 +18,8 @@ export function CreateJob() {
 
         const token = localStorage.getItem('token');
 
-        const response = await fetch("http://localhost:3000/api/v1/jobs", {
-            method: "POST",
+        const response = await fetch(`http://localhost:3000/api/v1/jobs/${id}`, {
+            method: "PATCH",
             headers: {
                 "Content-type": "application/json",
                 Authorization: `Bearer ${token}`
@@ -46,7 +48,8 @@ export function CreateJob() {
             <div className="w-full mt-20">
                 {!done &&
                     <div className="w-fit min-w-xl mx-auto">
-                        <p className="text-2xl font-bold mx-auto mt-8 mb-4  w-fit text-purple-700">Create New Job</p>
+                        <p className="text-3xl font-bold mx-auto mt-8 mb-2  w-fit text-purple-700">Update Job</p>
+                        <p className="text-xl font-bold mx-auto mb-4  w-fit text-purple-700">{id}</p>
                         <form className="flex flex-col gap-8 p-2" onSubmit={handleSubmit}>
                             <div>
                                 <label htmlFor="company" className='font-bold'>Company</label>
@@ -71,14 +74,14 @@ export function CreateJob() {
                                     <option value="pending">Pending</option>
                                 </select>
                             </div>
-                            <button type="submit" className='bg-purple-600 hover:bg-purple-700 text-white rounded-md mt-2 px-2 py-2 mb-6' disabled={done} >Create Job +</button>
+                            <button type="submit" className='bg-purple-600 hover:bg-purple-700 text-white rounded-md mt-2 px-2 py-2 mb-6' disabled={done} >Update Job</button>
                         </form>
                     </div>
                 }
                 {done &&
                     <div className="flex flex-row gap-2 items-center justify-center bg-purple-800 w-fit h-fit mx-auto mt-40 p-6 rounded-xl ">
-                        <p className="text-6xl w-fit text-white">Job Created</p>
-                        <ThumbsUp className="scale-250 ml-4 text-white"/>
+                        <p className="text-6xl w-fit">Job Upated</p>
+                        <ThumbsUp className="scale-250 ml-4"/>
                     </div>
                 }
             </div>

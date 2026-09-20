@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { SidePanel } from "./SidePanel";
-import { Trash2 } from "lucide-react";
+import { Trash2, Pen } from "lucide-react";
 import type { jobType } from "../types/Job";
 
 export function AllJobs() {
@@ -67,9 +68,12 @@ export function AllJobs() {
                                 <p className="ml-[33%]">{job.status}</p>
                             </div>
                         </div>
-                        <div className="bg-red-600 w-10 h-30 rounded-r-md relative" onClick={() => handleDelete(job._id)}>
+                        <div className="bg-red-600 w-10 h-30 relative" onClick={() => handleDelete(job._id)}>
                             <Trash2 className="absolute top-12 left-2 text-gray-700" />
                         </div>
+                        <Link to={`/api/v1/jobs/update/${job._id}`} className="bg-green-600 w-10 h-30 rounded-r-md relative">
+                            <Pen className="absolute top-12 left-2 text-gray-700" />
+                        </Link>
                     </div>
                 ))}
             </div>

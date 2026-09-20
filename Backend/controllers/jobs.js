@@ -81,6 +81,21 @@ const removePermanently = async (req, res) => {
     res.status(200).json({ msg: "Job Deleted" });
 }
 
+const restoreJob = async (req, res) => {
+    const {
+        user: { userId},
+        params: { id: jobId} 
+    } = req;
+
+    const job = await Job.findByIdAndUpdate(
+        {_id: jobId, creadedBy: userId },
+        { isDeleted: false}
+    )
+
+    if(!job) throw new NotFoundError(`No job found with id: ${jobId}`);
+    res.status(200).json({msg: "Job Restored"});
+}
+
 module.exports = {
     getAllJobs,
     getJob,
@@ -89,4 +104,5 @@ module.exports = {
     updateJob,
     showDeleted,
     removePermanently,
+    restoreJob
 }

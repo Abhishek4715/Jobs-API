@@ -5,6 +5,7 @@ import { Register } from "./pages/Register.tsx";
 import { AllJobs } from "./pages/AllJobs.tsx";
 import { CreateJob } from "./pages/CreateJob.tsx";
 import { DeleteJob } from "./pages/DeleteJob.tsx";
+import { UpdateJob } from "./pages/UpdateJob.tsx";
 import './App.css';
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
         <Route path="/api/v1/auths/register" element={<Register />} />
         <Route path="/api/v1/jobs/all" element={<AllJobs />} />
         <Route path="/api/v1/jobs/create" element={<CreateJob />} />
-        <Route path="api/v1/jobs/delete" element={<DeleteJob />} />
+        <Route path="/api/v1/jobs/delete" element={<DeleteJob />} />
+        <Route path="/api/v1/jobs/update/:id" element={<UpdateJob />} />
       </Routes>
     </>
   )

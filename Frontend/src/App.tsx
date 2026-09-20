@@ -3,7 +3,8 @@ import { Login } from './pages/Login';
 import { Home } from './pages/Home.tsx';
 import { Register } from "./pages/Register.tsx";
 import { AllJobs } from "./pages/AllJobs.tsx";
-import { CreateJob } from "./pages/CreateJob.tsx"
+import { CreateJob } from "./pages/CreateJob.tsx";
+import { DeleteJob } from "./pages/DeleteJob.tsx";
 import './App.css';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/api/v1/auths/register" element={<Register />} />
         <Route path="/api/v1/jobs/all" element={<AllJobs />} />
         <Route path="/api/v1/jobs/create" element={<CreateJob />} />
+        <Route path="api/v1/jobs/delete" element={<DeleteJob />} />
       </Routes>
     </>
   )

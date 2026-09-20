@@ -50,7 +50,7 @@ export function AllJobs() {
         <div className="flex flex-row">
             <SidePanel />
             <div className="w-full">
-                <p className="text-2xl font-bold m-auto mt-4 mb-10 w-fit text-purple-700">All Jobs List</p>
+                <p className="m-auto mb-10 w-fit text-3xl font-bold text-purple-700 mt-14">All Jobs List</p>
                 {data.map((job) => (
                     <div key={job._id} className="h-fit flex flex-row justify-center" dir="ltr">
                         <div className="flex flex-col w-xl rounded-s-md bg-purple-200 gap-2 mb-10 p-3 h-30">

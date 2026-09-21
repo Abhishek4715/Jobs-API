@@ -46,7 +46,7 @@ export function CreateJob() {
             <div className="w-full mt-20">
                 {!done &&
                     <div className="w-fit min-w-xl mx-auto">
-                        <p className="text-2xl font-bold mx-auto mt-8 mb-4  w-fit text-purple-700">Create New Job</p>
+                        <p className="text-5xl font-bold mx-auto mt-8 mb-4  w-fit text-purple-700">Create New Job</p>
                         <form className="flex flex-col gap-8 p-2" onSubmit={handleSubmit}>
                             <div>
                                 <label htmlFor="company" className='font-bold'>Company</label>

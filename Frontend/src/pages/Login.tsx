@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import Login_Img from "../Assets/Login_Img.png"
 
@@ -7,6 +8,8 @@ export function Login() {
     const [password, setPassword] = useState<string>("");
     const [remember, setRemember] = useState<boolean>(false);
     const [show, setShow] = useState<boolean>(false);
+    const [invalid, setInvalid] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -22,15 +25,18 @@ export function Login() {
             })
         });
 
-        if(!response.ok) {
+        if (!response.ok) {
             const error = await response.json();
+            setInvalid(true);
             console.log(error);
             return;
         }
 
         const data = await response.json();
+        setInvalid(false);
         console.log(data);
         localStorage.setItem('token', data.token);
+        if (localStorage.getItem("token")) navigate("/api/v1/jobs/all");
     }
 
     return (
@@ -42,7 +48,7 @@ export function Login() {
             <div className="flex flex-col px-8 items-start w-full md:w-1/2 mt-15">
                 <p className="font-bold text-2xl mb-2">Login to your account</p>
                 <p className="font-light mb-10">Enter your credentials to continue</p>
-                <form className="w-full mb-8" onSubmit={handleSubmit}>
+                <form className="w-full mb-8 relative" onSubmit={handleSubmit}>
                     <label htmlFor='email' className="block w-full"><b>Email address</b></label>
                     <div className=" flex items-center relative">
                         <Mail className="absolute left-3 top-4.5" />
@@ -54,9 +60,9 @@ export function Login() {
                         <Lock className="absolute left-3 top-4.5" />
                         <input id='password' value={password} className="block w-full border-gray-500/50 border-2 focus:outline-none focus:ring-0 rounded-md px-12 py-2 mt-2" type={show ? "text" : "password"} required
                             onChange={(e) => setPassword(e.target.value)} />
-                            <button type="button" className="absolute right-3 top-4.5" onClick={() => setShow(!show)}>
-                                {show? <EyeOff />: <Eye />}
-                            </button>
+                        <button type="button" className="absolute right-3 top-4.5" onClick={() => setShow(!show)}>
+                            {show ? <EyeOff /> : <Eye />}
+                        </button>
                     </div>
                     <div className="flex w-full items-center justify-between mb-12">
                         <label htmlFor="remember-me">
@@ -66,8 +72,10 @@ export function Login() {
                         </label>
                         <a href="#" className="text-right text-purple-900">Forgot password?</a>
                     </div>
-
                     <button type="submit" className="border-2 rounded-md p-2 bg-purple-600 text-white block mt-16 mb-2 hover:bg-purple-700 transition w-full">Login</button>
+                    {invalid && (
+                        <p className="w-fit m-auto text-red-700 absolute left-38">Invalid Credentials</p>
+                    )}
                 </form>
                 <div className="flex flex-row gap-4 items-center justify-center w-full">
                     <p>Don't have an account</p>

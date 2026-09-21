@@ -51,7 +51,8 @@ export function AllJobs() {
         <div className="flex flex-row">
             <SidePanel />
             <div className="w-full">
-                <p className="m-auto mb-10 w-fit text-3xl font-bold text-purple-700 mt-14">All Jobs List</p>
+                <p className="m-auto mb-10 w-fit text-5xl font-bold text-purple-700 mt-14">All Jobs List</p>
+                {data.length === 0 && <p className="w-fit mx-auto text-3xl mt-15">No Job Applied</p>}
                 {data.map((job) => (
                     <div key={job._id} className="h-fit flex flex-row justify-center" dir="ltr">
                         <div className="flex flex-col w-xl rounded-s-md bg-purple-200 gap-2 mb-10 p-3 h-30">

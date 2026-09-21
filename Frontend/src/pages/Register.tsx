@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { User, Mail, Lock, Eye, EyeOff, Phone } from 'lucide-react'
 import Register_Img from '../Assets/Register_Img.png'
 
@@ -12,6 +12,7 @@ export function Register() {
     const [phone, setPhone] = useState<string | number | readonly string[] | undefined>(undefined);
     const [checkbox, setCheckbox] = useState<boolean>(false);
     const [submitting, setSubmitting] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -42,6 +43,7 @@ export function Register() {
         } finally{
             setSubmitting(false);
         }
+        if(localStorage.getItem("token")) navigate("/api/v1/jobs/all");
     }
 
     return (

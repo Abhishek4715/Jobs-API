@@ -2,18 +2,17 @@ import { Link } from "react-router-dom"
 import { BriefcaseBusiness, PlusCircle, Trash, LogOut } from "lucide-react";
 
 export function SidePanel() {
-
     const panelItem: string[] = ["All Jobs", "Create Job", "Delete Job"];
     const panelIcon = [BriefcaseBusiness, PlusCircle, Trash];
     return (
         <div className="w-1/5 outline-2 bg-gray-800 flex flex-col h-screen items-center sticky top-0">
-            <p className="text-2xl w-fit mb-4 mt-4 text-purple-800 font-bold">Jobs Track</p>
+            <Link to={"/"}><p className="text-2xl w-fit mb-4 mt-4 text-purple-800 font-bold">Jobs Track</p> </Link>
 
             {panelItem.map((item, index) => {
                 const Icon = panelIcon[index];
                 return (
                     <div key={index} className="flex flex-row justify-center items-center">
-                        <Icon className="text-white"/>
+                        <Icon className="text-white" />
                         <Link key="item" to={`/api/v1/jobs/${item.split(" ")[0].toLowerCase()}`} className={`my-2 p-2`}  >
                             <button className="text-white">{item}</button>
                         </Link>
@@ -22,7 +21,9 @@ export function SidePanel() {
             })}
             <div className="mt-auto mb-4 flex flex-row items-center justify-center gap-1">
                 <LogOut />
-                <span className="text-red-700">Logout</span>
+                <Link to={"/"}>
+                    <button className="text-red-700" onClick={() => localStorage.removeItem("token")}>Logout</button>
+                </Link>
             </div>
         </div>
     )

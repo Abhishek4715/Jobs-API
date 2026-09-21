@@ -56,8 +56,9 @@ export function DeleteJob() {
         <div className="flex flex-row">
             <SidePanel />
             <div className="w-full flex flex-col items-center">
-                <p className="text-3xl font-bold text-purple-700 mt-14">Deleted Jobs</p>
-                <p className="text-xl text-purple-700 mt-2 mb-10">Recently Deleted Jobs</p>
+                <p className="text-5xl font-bold text-purple-700 mt-14">Deleted Jobs</p>
+                <p className="text-xl mt-3 mb-10">Recently Deleted Jobs</p>
+                {jobs.length === 0 && <p className="w-fit mx-auto text-3xl mt-15">Trash is Empty</p>}
                 <div>
                     {jobs.map((job) => (
                         <div key={job._id} className="h-fit flex flex-row justify-center" dir="ltr">
@@ -75,10 +76,10 @@ export function DeleteJob() {
                                     <p className="ml-[33%]">{job.status}</p>
                                 </div>
                             </div>
-                            <div className="bg-red-400 w-10 h-30 relative" onClick={() => handleAction(job._id, "DELETE")}>
+                            <div className="bg-red-600 w-10 h-30 relative" onClick={() => handleAction(job._id, "DELETE")}>
                                 <Trash2 className="absolute top-12 left-2 text-gray-700" />
                             </div>
-                            <div className="bg-green-300 w-10 h-30 rounded-r-md relative" onClick={() => handleAction(job._id, "PATCH")}>
+                            <div className="bg-green-600 w-10 h-30 rounded-r-md relative" onClick={() => handleAction(job._id, "PATCH")}>
                                 <RotateCcw className="absolute top-12 left-2 text-gray-700" />
                             </div> 
                         </div>
